@@ -10,6 +10,7 @@ exports.verifyToken = (req, res, next) => {
     (err, decoded) => {
       if (err) return res.status(401).json('Your token is invalid');
       req.userId = decoded.subject;
+      req.department = decoded.department;
       next();
     }
   );

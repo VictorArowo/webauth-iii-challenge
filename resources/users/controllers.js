@@ -45,7 +45,8 @@ exports.login = async (req, res) => {
 
 exports.getUsers = async (req, res) => {
   try {
-    let users = await db.getAllUsers();
+    console.log(req.department);
+    let users = await db.getAllUsers(req.department);
     res.status(200).json(users);
   } catch (error) {
     return res.status(500).json({ error: error.message });

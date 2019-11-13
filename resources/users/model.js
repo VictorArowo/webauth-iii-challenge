@@ -1,12 +1,15 @@
 const db = require('../../data/dbConfig');
 
-exports.getAllUsers = () => {
-  return db('users');
+exports.getAllUsers = department => {
+  return db('users')
+    .where({ department })
+    .select('users.id', 'users.username', 'users.department');
 };
 
 exports.getUser = username => {
   return db('users')
     .where('username', '=', username)
+    .select('users.id', 'users.username', 'users.department')
     .first();
 };
 
